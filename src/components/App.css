@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* Базовые стили для всей страницы */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #0e0e0e; /* Глубокий темный фон */
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+/* Главный контейнер-обертка */
+.page-container {
+  max-width: 1440px; /* Ограничиваем ширину для больших экранов */
+  margin: 0 auto;    /* Центрируем */
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Заголовок секции (если нужен) */
+.page-title {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* Сетка карточек (обновлено) */
+.dances-grid {
+  display: grid;
+  width: 100%;
+  /* Автоматически подбирает количество колонок: */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 60px 30px; /* Больше отступа снизу из-за вылетающих кнопок */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

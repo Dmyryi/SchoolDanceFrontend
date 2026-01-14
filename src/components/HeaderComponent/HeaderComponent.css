@@ -1,0 +1,49 @@
+.header {
+    position: absolute;
+    top: 40px; /* Більший відступ від верху */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: auto;
+}
+
+.nav-container {
+  
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px; /* Більша відстань між кнопками */
+}
+
+.nav-item {
+    /* Значно збільшені відступи всередині кнопок */
+    padding: 14px 35px; 
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item p {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    /* Збільшений шрифт */
+    font-size: 18px; 
+    font-weight: 400;
+    color: #1a1a1a;
+    letter-spacing: -0.2px;
+}
+
+/* Активний пункт меню — твій фірмовий бежевий */
+.nav-item.active {
+    background: #F3E8D6; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Ефект при наведенні */
+.nav-item:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.6);
+}
