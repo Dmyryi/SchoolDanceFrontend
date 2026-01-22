@@ -1,22 +1,24 @@
 import { useDispatch, useSelector } from "react-redux"
-import { getDances } from "../../redux/selectors/selectors"
+import { getDances, getTrainerByDances } from "../../redux/selectors/selectors"
 import { useEffect } from "react";
-import { fetchDances } from "../../redux/schoolShelf/schoolOperation";
+import { fetchDances, fetchTrainersByDance } from "../../redux/schoolShelf/schoolOperation";
 import "./DancesComponent.css";
+import { NavLink } from 'react-router-dom';
 export const DancesComponent=()=>{
 
 const dances = useSelector(getDances);
+
 const isLoading = useSelector(state => state.schoolDance.isLoading);
 const error = useSelector(state=>state.schoolDance.error);
 const dispatch = useDispatch();
 
 useEffect(()=>{
     dispatch(fetchDances());
+    
 }, [dispatch])
 
 console.log('Dances from Redux:', dances);
-console.log('Is Loading:', isLoading);
-console.log('Error:', error);
+
 
 
 
@@ -36,10 +38,14 @@ console.log('Error:', error);
             <h3 className="dance-card__title">{item.name}</h3>
             <p className="dance-card__category">{item.category}</p>
           </div>
-
+ <NavLink  to={`/trainers/${item.category}`}>
           <div className="dance-card__btn">
-            <div className="dance-card__btn-arrow"></div>
+             
+ <div className="dance-card__btn-arrow"></div>
+          
+           
           </div>
+          </NavLink>
         </li>
       ))}
     </ul>
