@@ -1,0 +1,223 @@
+.digital-kyiv-container {
+  background: #f5f5f7; /* Світлий фон як у застосунку */
+  padding: 16px;
+  border-radius: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.digital-header {
+  margin-bottom: 20px;
+  padding-left: 8px;
+}
+
+.digital-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #1c1c1e;
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Квадратні плитки */
+  gap: 12px;
+}
+
+.slot-card {
+  border: none;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  aspect-ratio: 1 / 1; /* Робимо плитку квадратною */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slot-active:active {
+  transform: scale(0.95);
+  background: #e5e5ea;
+}
+
+.slot-disabled {
+  background: #f2f2f7;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.slot-time {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1c1c1e;
+}
+
+.slot-day {
+  font-size: 12px;
+  color: #8e8e93;
+}
+
+.light-on {
+  font-size: 14px;
+  color: #34c759; /* Зелений Apple/KyivDigital */
+}
+
+.light-off {
+  font-size: 14px;
+  color: #ff3b30; /* Червоний */
+}
+
+.days-selector {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  scrollbar-width: none; /* Ховаємо скролбар для чистоти */
+}
+
+.day-btn {
+  min-width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  border: none;
+  background: #ffffff;
+  color: #8e8e93;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.day-btn.active {
+  background: #007aff; /* Фірмовий синій колір */
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.no-classes {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #8e8e93;
+  padding: 40px 0;
+}
+
+.timeline-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timeline-slot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+/* Білий: Немає занять у розкладі */
+.slot-empty {
+  background: #ffffff;
+  color: #d1d1d6;
+  border-style: dashed;
+}
+
+/* Жовтий: Заняття є, запис йде */
+.slot-available {
+  background: #FFD700; /* Жовтий як лампочка */
+  color: #000;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Чорний: Заняття є, але місць немає */
+.slot-booked {
+  background: #1c1c1e; /* Глибокий чорний */
+  color: #ffffff;
+  border: none;
+  opacity: 0.9;
+}
+
+.slot-time-label {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.slot-room {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.blocks-grid {
+  display: grid;
+  /* Робимо 3 або 4 блоки в ряд, залежно від екрану */
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
+  gap: 10px;
+  padding: 10px;
+}
+
+.time-block {
+  height: 100px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+/* 1. БІЛИЙ: Занять взагалі немає */
+.time-block.empty {
+  background-color: #ffffff;
+  border-color: #f0f0f0;
+  color: #ccc;
+}
+
+/* 2. ЖОВТИЙ: Заняття є, йде запис (як лампочка ДТЕК) */
+.time-block.available {
+  background-color: #FFD700;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+}
+
+/* 3. ЧОРНИЙ: Заняття є, але місць немає */
+.time-block.booked {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  opacity: 0.95;
+}
+
+.time-label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.room-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.mini-book-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255,255,255,0.5);
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,89 @@
+/* Контейнер для всех карточек */
+.dances-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 35px;
+  padding: 40px 20px;
+  /* background-color: #000; Фон страницы как на макете */
+}
+
+/* Основная карточка */
+.dance-card {
+  background-color: #ffffff;
+  border-radius: 60px; /* Сильное закругление краев */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: visible; /* Чтобы кнопка внизу могла выступать */
+  min-height: 550px;
+  box-sizing: border-box;
+}
+
+/* Обертка для изображения */
+.dance-card__image-thumb {
+  width: 100%;
+  height: 360px;
+  border-radius: 50px; /* Чуть меньше, чем у карточки */
+  overflow: hidden;
+}
+
+.dance-card__image-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Текстовый контент */
+.dance-card__content {
+  padding: 30px 20px 60px;
+  text-align: center;
+}
+
+.dance-card__title {
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px 0;
+  color: #000;
+}
+
+.dance-card__category {
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #7a7a7a;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 240px;
+}
+
+/* Круглая кнопка внизу */
+.dance-card__btn {
+  width: 75px;
+  height: 75px;
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -37px; /* Половина высоты кнопки, чтобы она выходила за край */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.dance-card__btn:hover {
+  transform: scale(1.1);
+}
+
+.dance-card__btn-arrow {
+  width: 25px;
+  height: 25px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transform: rotate(-45deg); /* Делаем стрелку вверх-вправо */
+  margin-top: 5px;
+}

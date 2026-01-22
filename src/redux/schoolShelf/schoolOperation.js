@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.baseURL = 'http://localhost:5231';
 
 export const fetchDances = createAsyncThunk(
-    'dances/fetchAll',
+    'dances/fetchAllDances',
     async(_, thunkApi)=>{
         try{
 const response = await axios.get('/api/school/dances');
@@ -18,11 +18,26 @@ return response.data;
     }
 )
 
-export const fetchTrainerByDance = createAsyncThunk(
-    'trainer/fetchByDance',
-    async(_, thunkApi)=>{
+export const fetchTrainersByDance = createAsyncThunk(
+    'trainer/fetchTrainers',
+    async(todoId, thunkApi)=>{
         try{
+const response = await axios.get(`/api/school/trainer/${todoId}`);
 
+return response.data;
+        }catch(error){
+            throw error;
+        }
+    }
+)
+
+export const fetchShedulesByTrainer = createAsyncThunk(
+    'shedule/fetchShedules',
+    async(trainerId, thunkApi)=>{
+        try{
+const response = await axios.get(`/api/school/shedule/${trainerId}`);
+console.log(response);
+return response.data;
         }catch(error){
             throw error;
         }

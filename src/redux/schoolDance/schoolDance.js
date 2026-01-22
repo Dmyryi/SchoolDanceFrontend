@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchDances } from "../schoolShelf/schoolOperation";
+import { fetchDances, fetchTrainersByDance,fetchShedulesByTrainer } from "../schoolShelf/schoolOperation";
 
 export const schoolSlice = createSlice({
     name:"schoolDance",
@@ -35,6 +35,49 @@ export const schoolSlice = createSlice({
         state.error = null;
         state.dances = action.payload;
       })
+      .addCase(
+        fetchTrainersByDance.pending,
+        state=>{
+            state.isLoading = true;
+        }
+      )
+      .addCase(
+        fetchTrainersByDance.rejected,
+        (state, action)=>{
+            state.isLoading = false;
+          state.error = action.error.message;
+        }
+      )
+      .addCase(
+        fetchTrainersByDance.fulfilled,
+         (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.trainers = action.payload;
+      }
+      )
+       
+        .addCase(
+        fetchShedulesByTrainer.pending,
+        state=>{
+            state.isLoading = true;
+        }
+      )
+      .addCase(
+        fetchShedulesByTrainer.rejected,
+        (state, action)=>{
+            state.isLoading = false;
+          state.error = action.error.message;
+        }
+      )
+      .addCase(
+        fetchShedulesByTrainer.fulfilled,
+         (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.schedule = action.payload;
+      }
+      )
   }
 })
 
