@@ -221,3 +221,144 @@
   height: 20px;
   cursor: pointer;
 }
+
+/* Контейнер розкладу */
+.schedule-dashboard {
+  padding: 8rem 2rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Навігація по днях */
+.days-nav {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.days-nav::-webkit-scrollbar {
+  height: 6px;
+}
+
+.days-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.days-nav::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* Кнопка дня */
+.day-tab {
+  min-width: 80px;
+  padding: 12px 20px;
+  border: 1px solid rgba(243, 232, 214, 0.5);
+  border-radius: 50px;
+  background: #ffffff;
+  color: #4a5568;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.day-tab:hover {
+  background: rgba(243, 232, 214, 0.2);
+  border-color: rgba(243, 232, 214, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.day-tab.active {
+  background: linear-gradient(135deg, #e5d5c5 0%, #d4c4b5 100%);
+  border-color: #e5d5c5;
+  color: #2d3748;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(229, 213, 197, 0.4);
+  transform: translateY(-2px);
+}
+
+.day-tab__short {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.day-tab__full {
+  font-size: 11px;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.day-tab.active .day-tab__short {
+  font-size: 13px;
+}
+
+.day-tab.active .day-tab__full {
+  opacity: 1;
+  font-weight: 500;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+  .schedule-dashboard {
+    padding: 1.5rem 1rem;
+  }
+  
+  .days-nav {
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .day-tab {
+    min-width: 70px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .day-tab__short {
+    font-size: 11px;
+  }
+  
+  .day-tab__full {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-dashboard {
+    padding: 1rem 0.5rem;
+  }
+  
+  .days-nav {
+    gap: 6px;
+    padding: 0.25rem;
+  }
+  
+  .day-tab {
+    min-width: 60px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .day-tab__short {
+    font-size: 10px;
+  }
+  
+  .day-tab__full {
+    display: none; /* На мобільних показуємо тільки скорочення */
+  }
+}

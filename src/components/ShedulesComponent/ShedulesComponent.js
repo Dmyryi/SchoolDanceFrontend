@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { fetchShedulesByTrainer } from "../../redux/schoolShelf/schoolOperation";
 import { getShedulesByTrainer } from "../../redux/selectors/selectors";
 import './SheduleComponent.css'
+
 export const SheduleComponent=()=>{
 const { trainerId } = useParams();
     const isLoading = useSelector(state => state.schoolDance.isLoading);
@@ -14,13 +15,23 @@ const { trainerId } = useParams();
 const shedules = useSelector(getShedulesByTrainer);
 const [activeDay, setActiveDay] = useState("Monday");
 
+  // Маппінг англійських назв на українські
+  const dayNames = {
+    Monday: "Понеділок",
+    Tuesday: "Вівторок",
+    Wednesday: "Середа",
+    Thursday: "Четвер",
+    Friday: "П'ятниця",
+    Saturday: "Субота",
+    Sunday: "Неділя"
+  };
+
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const timeSlots = [
     "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", 
     "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00"
   ];
-  // 2. Фільтруємо розклад під вибраний день
-  const filteredShedules = shedules.filter(item => item.dayOfWeek === activeDay);
+
 useEffect(()=>{
 dispatch(fetchShedulesByTrainer(trainerId));
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -33,13 +44,14 @@ return (
     <div className="schedule-dashboard">
       {/* Перемикач днів (Таби) */}
       <div className="days-nav">
-        {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(day => (
+        {days.map(day => (
           <button 
             key={day} 
             className={`day-tab ${activeDay === day ? 'active' : ''}`}
             onClick={() => setActiveDay(day)}
           >
-            {day.substring(0, 3)}
+            <span className="day-tab__short">{dayNames[day].substring(0, 3)}</span>
+            <span className="day-tab__full">{dayNames[day]}</span>
           </button>
         ))}
       </div>
