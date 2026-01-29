@@ -1,14 +1,14 @@
 .header {
-    position: absolute;
-    top: 40px; /* Більший відступ від верху */
+    position: fixed;
+    top: 40px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 100;
+    z-index: 1000;
     width: auto;
 }
 
 .nav-container {
-  
+    /* Контейнер для навигации */
 }
 
 .nav-list {
@@ -16,12 +16,11 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 15px; /* Більша відстань між кнопками */
+    gap: 15px;
 }
 
 .nav-item {
-    /* Значно збільшені відступи всередині кнопок */
-    padding: 14px 35px; 
+    padding: 14px 35px;
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -30,20 +29,119 @@
 .nav-item p {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    /* Збільшений шрифт */
-    font-size: 18px; 
+    font-size: 18px;
     font-weight: 400;
     color: #1a1a1a;
     letter-spacing: -0.2px;
 }
 
-/* Активний пункт меню — твій фірмовий бежевий */
+/* Активний пункт меню — бежевий */
 .nav-item.active {
-    background: #F3E8D6; 
+    background: #F3E8D6;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 /* Ефект при наведенні */
 .nav-item:hover:not(.active) {
     background: rgba(255, 255, 255, 0.6);
+}
+
+/* Кнопка профілю - в правому верхнем углу */
+.profile-btn {
+    position: fixed;
+    top: 40px;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+    text-decoration: none;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-btn:hover {
+    background: #F3E8D6;
+    border-color: #F3E8D6;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(243, 232, 214, 0.4);
+}
+
+.profile-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .profile-btn {
+        top: 20px;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .profile-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-btn {
+        top: 10px;
+        right: 0.75rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .profile-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .header {
+        top: 20px;
+        left: 1rem;
+        right: 1rem;
+        transform: none;
+    }
+    
+    .nav-list {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-item {
+        padding: 12px 24px;
+    }
+    
+    .nav-item p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        top: 10px;
+    }
+    
+    .nav-item {
+        padding: 10px 20px;
+    }
+    
+    .nav-item p {
+        font-size: 14px;
+    }
 }

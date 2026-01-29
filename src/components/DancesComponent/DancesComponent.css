@@ -1,10 +1,18 @@
 /* Контейнер для всех карточек */
+.dances-container {
+  padding: 8rem 2rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
 .dances-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 35px;
+  gap: 60px 35px; /* Больше отступа снизу из-за вылетающих кнопок */
   padding: 40px 20px;
-  /* background-color: #000; Фон страницы как на макете */
+  list-style: none;
+  margin: 0;
 }
 
 /* Основная карточка */
@@ -19,6 +27,13 @@
   overflow: visible; /* Чтобы кнопка внизу могла выступать */
   min-height: 550px;
   box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dance-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Обертка для изображения */
@@ -27,18 +42,28 @@
   height: 360px;
   border-radius: 50px; /* Чуть меньше, чем у карточки */
   overflow: hidden;
+  position: relative;
 }
 
 .dance-card__image-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.dance-card:hover .dance-card__image-thumb img {
+  transform: scale(1.05);
 }
 
 /* Текстовый контент */
 .dance-card__content {
   padding: 30px 20px 60px;
   text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .dance-card__title {
@@ -49,6 +74,7 @@
   letter-spacing: 1px;
   margin: 0 0 10px 0;
   color: #000;
+  line-height: 1.3;
 }
 
 .dance-card__category {
@@ -58,6 +84,7 @@
   line-height: 1.4;
   margin: 0;
   max-width: 240px;
+  margin: 0 auto;
 }
 
 /* Круглая кнопка внизу */
@@ -72,11 +99,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .dance-card__btn:hover {
   transform: scale(1.1);
+  background-color: #1a1a1a;
 }
 
 .dance-card__btn-arrow {
@@ -86,4 +115,169 @@
   border-right: 3px solid #fff;
   transform: rotate(-45deg); /* Делаем стрелку вверх-вправо */
   margin-top: 5px;
+  transition: transform 0.3s ease;
 }
+
+.dance-card__btn:hover .dance-card__btn-arrow {
+  transform: rotate(-45deg) translate(3px, -3px);
+}
+
+/* Loading state */
+.dances-container > div:first-child {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #4a5568;
+  padding: 4rem 2rem;
+}
+
+/* Error state */
+.dances-container > div:nth-child(2) {
+  text-align: center;
+  padding: 2rem;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Empty state */
+.dances-container > div:nth-child(3) {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #718096;
+  font-size: 1.2rem;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .dances-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 50px 30px;
+  }
+  
+  .dance-card {
+    min-height: 520px;
+  }
+  
+  .dance-card__image-thumb {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dances-container {
+    padding: 6rem 1.5rem 3rem;
+  }
+  
+  .dances-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 50px 25px;
+    padding: 30px 15px;
+  }
+  
+  .dance-card {
+    min-height: 480px;
+    border-radius: 50px;
+    padding: 12px;
+  }
+  
+  .dance-card__image-thumb {
+    height: 280px;
+    border-radius: 40px;
+  }
+  
+  .dance-card__content {
+    padding: 25px 15px 55px;
+  }
+  
+  .dance-card__title {
+    font-size: 20px;
+  }
+  
+  .dance-card__category {
+    font-size: 13px;
+  }
+  
+  .dance-card__btn {
+    width: 65px;
+    height: 65px;
+    bottom: -32px;
+  }
+  
+  .dance-card__btn-arrow {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dances-container {
+    padding: 5rem 1rem 2rem;
+  }
+  
+  .dances-grid {
+    grid-template-columns: 1fr;
+    gap: 45px 0;
+    padding: 20px 10px;
+  }
+  
+  .dance-card {
+    min-height: 450px;
+    border-radius: 40px;
+    padding: 10px;
+  }
+  
+  .dance-card__image-thumb {
+    height: 240px;
+    border-radius: 35px;
+  }
+  
+  .dance-card__content {
+    padding: 20px 15px 50px;
+  }
+  
+  .dance-card__title {
+    font-size: 18px;
+  }
+  
+  .dance-card__category {
+    font-size: 12px;
+  }
+  
+  .dance-card__btn {
+    width: 60px;
+    height: 60px;
+    bottom: -30px;
+  }
+  
+  .dance-card__btn-arrow {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Анимация появления карточек */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dance-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.dance-card:nth-child(1) { animation-delay: 0.1s; }
+.dance-card:nth-child(2) { animation-delay: 0.2s; }
+.dance-card:nth-child(3) { animation-delay: 0.3s; }
+.dance-card:nth-child(4) { animation-delay: 0.4s; }
+.dance-card:nth-child(5) { animation-delay: 0.5s; }
+.dance-card:nth-child(6) { animation-delay: 0.6s; }
