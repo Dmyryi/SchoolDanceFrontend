@@ -5,10 +5,13 @@ axios.defaults.baseURL = 'http://localhost:5231';
 
 const setAuthHeader = token =>{
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
+ // ФІКС ТУТ
 }
 
 const clearAuthHeader = ()=>{
     axios.defaults.headers.common.Authorization = '';
+    localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
 }
 
 
@@ -20,6 +23,7 @@ export const register = createAsyncThunk(
 const res = await axios.post('/api/auth/register', credential);
 
 setAuthHeader(res.data.tokens.accessToken);
+ localStorage.setItem('refreshToken', res.data.tokens.refreshToken);
 return res.data;
         }catch(error){
   const errorMessage =
@@ -39,6 +43,7 @@ export const logIn = createAsyncThunk(
         try{
 const res = await axios.post('/api/auth/login', credential);
         setAuthHeader(res.data.tokens.accessToken);
+           localStorage.setItem('refreshToken', res.data.tokens.refreshToken);
         return res.data;
         }catch(error){
  const errorMessage =
@@ -51,6 +56,23 @@ const res = await axios.post('/api/auth/login', credential);
         
     }
 )
+
+export const logOut = createAsyncThunk(
+  'auth/logOut',
+  async (_, thunkAPI) => {
+     try {
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      
+      await axios.post('/api/auth/logout', { refreshToken });
+  
+    clearAuthHeader();
+    
+  } catch (error) {
+    clearAuthHeader();
+    return thunkAPI.rejectWithValue(error.message);
+  }
+  });
 
 
 export const refreshUser = createAsyncThunk(
