@@ -1,7 +1,9 @@
 import "./HeaderComponent.css"
 import { NavLink } from 'react-router-dom';
-
+import { useAuth } from "../../hooks/useAuth";
 export const HeaderComponent=()=>{
+
+    const { isLoggedIn } = useAuth();
     return(
         <>
         <div className="header">
@@ -19,6 +21,7 @@ export const HeaderComponent=()=>{
                 <path d="M20.59 22C20.59 18.13 16.74 15 12 15C7.26 15 3.41 18.13 3.41 22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
         </NavLink>
+
         </>
     )
 }
