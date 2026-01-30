@@ -1,9 +1,25 @@
 import React from 'react';
 import './RegisterForm.css';
-
+import { useDispatch } from 'react-redux';
+import { register } from '../../redux/auth/operations';
 export default function RegisterForm() {
+
+const dispatch = useDispatch();
+
+const handleSubmit = (e) => {
+e.preventDefault();
+const form = e.currentTarget;
+dispatch(register({
+  email:form.elements.email.value,
+  password:form.elements.password.value,
+  name:form.elements.name.value,
+  phone:form.elements.phone.value
+}))
+form.reset();
+}
+
   return (
-    <form className="auth-form">
+    <form className="auth-form" onSubmit={handleSubmit}>
       <div className="form-header">
         <h2 className="form-title">Реєстрація</h2>
         <p className="form-subtitle">Створіть новий обліковий запис</p>
