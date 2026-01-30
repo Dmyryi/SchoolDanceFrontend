@@ -9,6 +9,8 @@ const setAuthHeader = token =>{
 
 const clearAuthHeader = ()=>{
     axios.defaults.headers.common.Authorization = '';
+    localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
 }
 
 
@@ -51,6 +53,23 @@ const res = await axios.post('/api/auth/login', credential);
         
     }
 )
+
+export const logOut = createAsyncThunk(
+  'auth/logOut',
+  async (_, thunkAPI) => {
+     try {
+      const refreshToken = localStorage.getItem('refreshToken');
+
+      
+      await axios.post('/api/auth/logout', { refreshToken });
+  
+    clearAuthHeader();
+    
+  } catch (error) {
+    clearAuthHeader();
+    return thunkAPI.rejectWithValue(error.message);
+  }
+  });
 
 
 export const refreshUser = createAsyncThunk(
