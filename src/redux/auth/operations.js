@@ -5,6 +5,7 @@ axios.defaults.baseURL = 'http://localhost:5231';
 
 const setAuthHeader = token =>{
     axios.defaults.headers.common.Authorization = `Bearer ${token}`
+ // ФІКС ТУТ
 }
 
 const clearAuthHeader = ()=>{
@@ -22,6 +23,7 @@ export const register = createAsyncThunk(
 const res = await axios.post('/api/auth/register', credential);
 
 setAuthHeader(res.data.tokens.accessToken);
+ localStorage.setItem('refreshToken', res.data.tokens.refreshToken);
 return res.data;
         }catch(error){
   const errorMessage =
@@ -41,6 +43,7 @@ export const logIn = createAsyncThunk(
         try{
 const res = await axios.post('/api/auth/login', credential);
         setAuthHeader(res.data.tokens.accessToken);
+           localStorage.setItem('refreshToken', res.data.tokens.refreshToken);
         return res.data;
         }catch(error){
  const errorMessage =
