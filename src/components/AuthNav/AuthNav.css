@@ -8,10 +8,10 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
-  background: white;
+  background: var(--color-surface);
   padding: 0.5rem;
   border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(26, 32, 44, 0.08);
+  border: 1px solid var(--color-border);
 }
 
 .auth-tab {
@@ -20,10 +20,10 @@
   border: none;
   border-radius: 50px;
   background: transparent;
-  color: #718096;
+  color: var(--color-text-muted);
   font-size: 1rem;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
@@ -31,14 +31,14 @@
 }
 
 .auth-tab:hover {
-  color: #2d3748;
-  background: #f8f9fa;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .auth-tab.active {
-  background: linear-gradient(135deg, #e5d5c5 0%, #d4c4b5 100%);
-  color: #2d3748;
-  box-shadow: 0 4px 15px rgba(229, 213, 197, 0.3);
+  background: #fff;
+  color: #000;
+  box-shadow: var(--shadow-sm);
 }
 
 .auth-form-container {

@@ -1,7 +1,6 @@
 .home-page {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
-  background: #f8f9fa;
   position: relative;
+  background: var(--color-bg);
 }

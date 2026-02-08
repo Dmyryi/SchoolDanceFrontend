@@ -1,14 +1,12 @@
 .profile-page {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
-  background: #f8f9fa;
-  position: relative;
+  background: var(--color-bg);
 }
 
 .profile-container {
-  padding: 8rem 2rem 4rem;
-  max-width: 1400px;
+  padding: var(--content-top) var(--section-padding-x) var(--space-xl);
+  max-width: var(--content-max-width);
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -16,24 +14,8 @@
   align-items: flex-start;
 }
 
-.profile-container h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #1a202c;
-  margin-bottom: 1rem;
-}
-
-.profile-container p {
-  font-size: 1.2rem;
-  color: #718096;
-}
-
-
 @media (max-width: 768px) {
   .profile-container {
-    padding: 6rem 1rem 2rem;
+    padding: var(--content-top) var(--space-md) var(--space-lg);
   }
-
 }
-
-

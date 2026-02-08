@@ -1,16 +1,102 @@
+/* ===== Стиль як у hero: темний фон, білий текст, контраст ===== */
+:root {
+  /* Темна тема під hero */
+  --color-bg: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.6);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-accent: #d4b896;
+  --color-accent-hover: #e5c9a8;
+  --color-accent-bg: rgba(255, 255, 255, 0.08);
+  --color-primary: #ffffff;
+  --color-primary-hover: rgba(255, 255, 255, 0.9);
+  --color-available: #c9a86c;
+  --color-available-border: #b8956a;
+  --color-booked: #2a2a2a;
+  --color-error: #ef4444;
+
+  /* Радіуси */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+
+  /* Відступи */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Секції */
+  --section-padding-y: 4rem;
+  --section-padding-x: 1.5rem;
+  --content-max-width: 1200px;
+
+  /* Тіні для темного фону */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  /* Шрифти */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Syne', var(--font-sans);
+
+  /* Лейаут */
+  --header-height: 5.5rem;
+  --content-top: 6rem;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
   width: 100%;
   min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-text);
+  background: var(--color-bg);
   overflow-x: hidden;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Заголовки секцій — як у hero (Syne, білий) */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-lead {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin: 0 0 2.5rem;
+  line-height: 1.5;
 }

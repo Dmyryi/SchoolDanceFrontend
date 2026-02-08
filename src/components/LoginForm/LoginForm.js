@@ -1,19 +1,25 @@
 import React from 'react';
 import './LoginForm.css';
-import { logIn } from '../../redux/auth/operations';
+import { logIn, refreshUser } from '../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
-export default function LoginForm() {
-const dispatch = useDispatch();
 
-const handleSubmit = (e) => {
-e.preventDefault();
-const form = e.currentTarget;
-dispatch(logIn({
-  email:form.elements.email.value,
-  password:form.elements.password.value
-}))
-form.reset();
-}
+export default function LoginForm() {
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    try {
+      await dispatch(logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })).unwrap();
+      await dispatch(refreshUser()).unwrap();
+    } catch {
+      // помилку вже показує logIn через alert
+    }
+    form.reset();
+  };
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>

@@ -1,364 +1,254 @@
-.digital-kyiv-container {
-  background: #f5f5f7; /* Світлий фон як у застосунку */
-  padding: 16px;
-  border-radius: 24px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-.digital-header {
-  margin-bottom: 20px;
-  padding-left: 8px;
-}
-
-.digital-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0;
-  color: #1c1c1e;
-}
-
-.slots-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Квадратні плитки */
-  gap: 12px;
-}
-
-.slot-card {
-  border: none;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  aspect-ratio: 1 / 1; /* Робимо плитку квадратною */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.slot-active:active {
-  transform: scale(0.95);
-  background: #e5e5ea;
-}
-
-.slot-disabled {
-  background: #f2f2f7;
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.slot-time {
-  font-size: 18px;
-  font-weight: 700;
-  color: #1c1c1e;
-}
-
-.slot-day {
-  font-size: 12px;
-  color: #8e8e93;
-}
-
-.light-on {
-  font-size: 14px;
-  color: #34c759; /* Зелений Apple/KyivDigital */
-}
-
-.light-off {
-  font-size: 14px;
-  color: #ff3b30; /* Червоний */
-}
-
-.days-selector {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 16px;
-  margin-bottom: 20px;
-  scrollbar-width: none; /* Ховаємо скролбар для чистоти */
-}
-
-.day-btn {
-  min-width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  border: none;
-  background: #ffffff;
-  color: #8e8e93;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.day-btn.active {
-  background: #007aff; /* Фірмовий синій колір */
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-}
-
-.no-classes {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: #8e8e93;
-  padding: 40px 0;
-}
-
-.timeline-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.timeline-slot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px;
-  border-radius: 12px;
-  border: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
-}
-
-/* Білий: Немає занять у розкладі */
-.slot-empty {
-  background: #ffffff;
-  color: #d1d1d6;
-  border-style: dashed;
-}
-
-/* Жовтий: Заняття є, запис йде */
-.slot-available {
-  background: #FFD700; /* Жовтий як лампочка */
-  color: #000;
-  border: none;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* Чорний: Заняття є, але місць немає */
-.slot-booked {
-  background: #1c1c1e; /* Глибокий чорний */
-  color: #ffffff;
-  border: none;
-  opacity: 0.9;
-}
-
-.slot-time-label {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.slot-room {
-  font-size: 12px;
-  text-transform: uppercase;
-  margin-right: 10px;
-}
-
-.blocks-grid {
-  display: grid;
-  /* Робимо 3 або 4 блоки в ряд, залежно від екрану */
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
-  gap: 10px;
-  padding: 10px;
-}
-
-.time-block {
-  height: 100px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s ease;
-  position: relative;
-  border: 2px solid transparent;
-}
-
-/* 1. БІЛИЙ: Занять взагалі немає */
-.time-block.empty {
-  background-color: #ffffff;
-  border-color: #f0f0f0;
-  color: #ccc;
-}
-
-/* 2. ЖОВТИЙ: Заняття є, йде запис (як лампочка ДТЕК) */
-.time-block.available {
-  background-color: #FFD700;
-  color: #000;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
-}
-
-/* 3. ЧОРНИЙ: Заняття є, але місць немає */
-.time-block.booked {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  opacity: 0.95;
-}
-
-.time-label {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-
-.room-label {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-
-.mini-book-btn {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: rgba(255,255,255,0.5);
-  border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-/* Контейнер розкладу */
+/* ===== Schedule dashboard ===== */
 .schedule-dashboard {
-  padding: 8rem 2rem 2rem;
-  max-width: 1400px;
+  padding: var(--content-top) var(--section-padding-x) var(--space-xl);
+  max-width: var(--content-max-width);
   margin: 0 auto;
   min-height: 100vh;
 }
 
-/* Навігація по днях */
 .days-nav {
   display: flex;
-  gap: 12px;
-  margin-bottom: 2rem;
-  padding: 0.5rem;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-xs) 0;
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  -webkit-overflow-scrolling: touch;
 }
 
 .days-nav::-webkit-scrollbar {
-  height: 6px;
-}
-
-.days-nav::-webkit-scrollbar-track {
-  background: transparent;
+  height: 4px;
 }
 
 .days-nav::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
 }
 
-/* Кнопка дня */
 .day-tab {
-  min-width: 80px;
-  padding: 12px 20px;
-  border: 1px solid rgba(243, 232, 214, 0.5);
-  border-radius: 50px;
-  background: #ffffff;
-  color: #4a5568;
-  font-size: 14px;
+  flex-shrink: 0;
+  min-width: 64px;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  gap: 2px;
 }
 
 .day-tab:hover {
-  background: rgba(243, 232, 214, 0.2);
-  border-color: rgba(243, 232, 214, 0.8);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--color-bg);
+  border-color: var(--color-accent);
+  color: var(--color-text);
 }
 
 .day-tab.active {
-  background: linear-gradient(135deg, #e5d5c5 0%, #d4c4b5 100%);
-  border-color: #e5d5c5;
-  color: #2d3748;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text);
   font-weight: 600;
-  box-shadow: 0 4px 15px rgba(229, 213, 197, 0.4);
-  transform: translateY(-2px);
 }
 
 .day-tab__short {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.5px;
   text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .day-tab__full {
-  font-size: 11px;
-  opacity: 0.8;
-  font-weight: 400;
+  font-size: 10px;
+  opacity: 0.9;
 }
 
-.day-tab.active .day-tab__short {
-  font-size: 13px;
+/* ===== Time slots grid ===== */
+.blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-sm);
 }
 
-.day-tab.active .day-tab__full {
-  opacity: 1;
+.time-block {
+  min-height: 72px;
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.2s;
+}
+
+.time-block.empty {
+  background: var(--color-surface);
+  color: #b0b0b0;
+}
+
+.time-block.available {
+  background: var(--color-available);
+  border-color: var(--color-available-border);
+  color: var(--color-text);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+.time-block.available:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.time-block.booked {
+  background: var(--color-booked);
+  color: #e8e8e8;
+  border-color: transparent;
+}
+
+.time-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.room-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.mini-book-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.mini-book-btn:hover:not(:disabled) {
+  background: var(--color-surface);
+  transform: scale(1.1);
+}
+
+.mini-book-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== Success modal ===== */
+.book-success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: var(--space-lg);
+}
+
+.book-success-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  max-width: 340px;
+  width: 100%;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.book-success-modal__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.book-success-modal__text {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.book-success-modal__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.9375rem;
   font-weight: 500;
+  cursor: pointer;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  transition: background 0.2s;
 }
 
-/* Адаптивність */
-@media (max-width: 768px) {
+.book-success-modal__btn:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .blocks-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
   .schedule-dashboard {
-    padding: 1.5rem 1rem;
+    padding: var(--content-top) var(--space-md) var(--space-lg);
   }
-  
-  .days-nav {
-    gap: 8px;
-    margin-bottom: 1.5rem;
+
+  .blocks-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xs);
   }
-  
-  .day-tab {
-    min-width: 70px;
-    padding: 10px 16px;
-    font-size: 13px;
+
+  .time-block {
+    min-height: 64px;
+    padding: var(--space-xs);
   }
-  
-  .day-tab__short {
-    font-size: 11px;
+
+  .time-label {
+    font-size: 0.8125rem;
   }
-  
+
   .day-tab__full {
-    font-size: 10px;
+    display: none;
+  }
+
+  .day-tab {
+    min-width: 52px;
+    padding: 6px 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .schedule-dashboard {
-    padding: 1rem 0.5rem;
+  .blocks-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .days-nav {
-    gap: 6px;
-    padding: 0.25rem;
-  }
-  
-  .day-tab {
-    min-width: 60px;
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-  
-  .day-tab__short {
-    font-size: 10px;
-  }
-  
-  .day-tab__full {
-    display: none; /* На мобільних показуємо тільки скорочення */
+
+  .time-block {
+    min-height: 56px;
   }
 }
