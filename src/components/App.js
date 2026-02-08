@@ -6,6 +6,7 @@ import DancesPage from '../pages/DancesPage/DancesPage';
 import { TrainersPage } from '../pages/TrainersPage/TrainersPage';
 import { ShedulePage } from '../pages/ShedulesPage/ShedulesPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
+import { ProfileSchedulesPage } from '../pages/ProfileSchedulesPage/ProfileSchedulesPage';
 import { useAuth } from '../hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
@@ -26,6 +27,7 @@ function App() {
       <Route path="/trainers/:specDance" element={<TrainersPage />} />
       <Route path="/shedules/:trainerId" element={<ShedulePage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile/schedules" element={<ProfileSchedulesPage />} />
     </Routes>
   );
 }
