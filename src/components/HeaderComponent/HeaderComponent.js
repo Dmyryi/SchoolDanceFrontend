@@ -1,20 +1,28 @@
-import "./HeaderComponent.css"
+import { useEffect, useState } from "react";
+import "./HeaderComponent.css";
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth } from "../../hooks/useAuth";
 import { logOut } from "../../redux/auth/operations";
-import './HeaderComponent.css';
+
 export const HeaderComponent = () => {
     const dispatch = useDispatch();
     const { isLoggedIn } = useAuth();
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 50);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
 
     return (
-        <header className="header">
+        <header className={`header ${scrolled ? 'scrolled' : ''}`}>
             <nav className="nav-container">
                 <ul className="nav-list">
-                    <li className="nav-item active"><NavLink to="/"><p>Головна</p></NavLink></li>
-                    <li className="nav-item"><p>Галерея</p></li>
-                    <li className="nav-item"><p>Контакти</p></li>
+                    <li className="nav-item"><NavLink to="/"><p>Головна</p></NavLink></li>
+                    <li className="nav-item"><NavLink to="/#gallery"><p>Галерея</p></NavLink></li>
+                    <li className="nav-item"><NavLink to="/#contacts"><p>Контакти</p></NavLink></li>
                 </ul>
             </nav>
 

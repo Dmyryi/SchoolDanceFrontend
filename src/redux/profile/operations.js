@@ -26,3 +26,15 @@ export const fetchProfileSchedules = createAsyncThunk(
     }
   }
 );
+
+export const bookSchedule = createAsyncThunk(
+  'profile/book',
+  async ({ sheduleId, actualDate }, thunkAPI) => {
+    try {
+      await axios.post('/api/profile/book', { sheduleId, actualDate });
+    } catch (error) {
+      const message = error.response?.data?.message || error.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);

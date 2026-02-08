@@ -1,22 +1,27 @@
 import React from 'react';
 import './RegisterForm.css';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/auth/operations';
+import { register, refreshUser } from '../../redux/auth/operations';
+
 export default function RegisterForm() {
+  const dispatch = useDispatch();
 
-const dispatch = useDispatch();
-
-const handleSubmit = (e) => {
-e.preventDefault();
-const form = e.currentTarget;
-dispatch(register({
-  email:form.elements.email.value,
-  password:form.elements.password.value,
-  name:form.elements.name.value,
-  phone:form.elements.phone.value
-}))
-form.reset();
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    try {
+      await dispatch(register({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+        name: form.elements.name.value,
+        phone: form.elements.phone.value,
+      })).unwrap();
+      await dispatch(refreshUser()).unwrap();
+    } catch {
+      // помилку вже показує register через alert
+    }
+    form.reset();
+  };
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>

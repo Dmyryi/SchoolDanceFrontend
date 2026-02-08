@@ -1,43 +1,44 @@
+/* Форми реєстрації — ті самі стилі, що й LoginForm (єдина дизайн-система) */
 .auth-form {
-  background: white;
-  border-radius: 50px;
-  padding: 3rem 4rem;
-  box-shadow: 0 10px 40px rgba(26, 32, 44, 0.08);
-  max-width: 500px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) 2.5rem;
+  box-shadow: var(--shadow-lg);
+  max-width: 440px;
   margin: 0 auto;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.25s var(--ease-out);
 }
 
 .auth-form:hover {
-  box-shadow: 0 15px 50px rgba(26, 32, 44, 0.12);
+  box-shadow: var(--shadow-lg);
 }
 
 .form-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-xl);
   text-align: center;
 }
 
 .form-title {
-  font-size: 2.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 800;
-  color: #1a202c;
-  margin: 0 0 0.5rem 0;
-  font-family: 'Montserrat', sans-serif;
+  color: var(--color-text);
+  margin: 0 0 0.5rem;
   letter-spacing: -0.02em;
 }
 
 .form-subtitle {
-  font-size: 1.1rem;
-  color: #718096;
+  font-size: 1rem;
+  color: var(--color-text-muted);
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-sans);
 }
 
 .form-fields {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 .form-group {
@@ -46,103 +47,95 @@
 }
 
 .form-label {
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 0.75rem;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.01em;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-sans);
 }
 
 .required {
-  color: #e53e3e;
+  color: var(--color-error);
   margin-left: 2px;
 }
 
 .form-input {
   width: 100%;
-  padding: 1rem 1.25rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 20px;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  color: #1a202c;
-  background: #f8f9fa;
-  transition: all 0.3s ease;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
 }
 
 .form-input::placeholder {
-  color: #a0aec0;
+  color: var(--color-text-muted);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #e5d5c5;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(229, 213, 197, 0.1);
+  border-color: var(--color-accent);
+  background: var(--color-bg);
+  box-shadow: 0 0 0 3px rgba(212, 184, 150, 0.2);
 }
 
 .form-input:hover:not(:focus) {
-  border-color: #cbd5e0;
-  background: white;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .form-actions {
   display: flex;
   justify-content: center;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e2e8f0;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
 }
 
 .btn-primary {
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-full);
   border: none;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, #e5d5c5 0%, #d4c4b5 100%);
-  color: #2d3748;
+  font-family: var(--font-display);
+  background: #fff;
+  color: #000;
   width: 100%;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(229, 213, 197, 0.4);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 0 32px rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:active {
   transform: translateY(0);
 }
 
-/* Адаптивність */
 @media (max-width: 768px) {
   .auth-form {
-    padding: 2rem 1.5rem;
-    border-radius: 30px;
+    padding: var(--space-xl) var(--space-lg);
   }
 
   .form-title {
-    font-size: 2rem;
+    font-size: 1.875rem;
   }
 }
 
 @media (max-width: 480px) {
   .auth-form {
-    padding: 1.5rem 1rem;
-    border-radius: 25px;
+    padding: var(--space-lg) var(--space-md);
   }
 
   .form-title {
-    font-size: 1.75rem;
-  }
-
-  .form-subtitle {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 }

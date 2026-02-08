@@ -60,18 +60,16 @@ const res = await axios.post('/api/auth/login', credential);
 export const logOut = createAsyncThunk(
   'auth/logOut',
   async (_, thunkAPI) => {
-     try {
+    try {
       const refreshToken = localStorage.getItem('refreshToken');
-
-      
-      await axios.post('/api/auth/logout', { refreshToken });
-  
-    clearAuthHeader();
-    
-  } catch (error) {
-    clearAuthHeader();
-    return thunkAPI.rejectWithValue(error.message);
-  }
+      if (refreshToken) {
+        await axios.post('/api/auth/logout', { refreshToken });
+      }
+    } catch {
+      // Ігноруємо помилку бекенду — виходимо локально в будь-якому випадку
+    } finally {
+      clearAuthHeader();
+    }
   });
 
 

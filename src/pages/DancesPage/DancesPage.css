@@ -2,6 +2,6 @@
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background: #f8f9fa;
+  background: var(--color-bg);
   position: relative;
 }
