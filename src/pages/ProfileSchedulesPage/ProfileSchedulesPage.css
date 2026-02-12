@@ -185,3 +185,204 @@
 .profile-schedule-menu__item:hover {
   background: rgba(255, 255, 255, 0.08);
 }
+
+/* ===== Reschedule modal ===== */
+.reschedule-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: var(--space-lg);
+}
+
+.reschedule-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  max-width: 420px;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.reschedule-modal--with-grid {
+  max-width: 520px;
+}
+
+.reschedule-modal__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 var(--space-xs);
+}
+
+.reschedule-modal__subtitle {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-lg);
+}
+
+.reschedule-form__group {
+  margin-bottom: var(--space-md);
+}
+
+.reschedule-form__label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.reschedule-form__label .required {
+  color: var(--color-error);
+}
+
+.reschedule-form__input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.reschedule-form__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.reschedule-form__select {
+  cursor: pointer;
+}
+
+.reschedule-form__error {
+  font-size: 0.875rem;
+  color: var(--color-error);
+  margin: 0 0 var(--space-md);
+}
+
+.reschedule-form__actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: flex-end;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.reschedule-form__btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.reschedule-form__btn--cancel {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.reschedule-form__btn--cancel:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.reschedule-form__btn--submit {
+  background: #fff;
+  color: #000;
+  border: none;
+}
+
+.reschedule-form__btn--submit:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.reschedule-form__btn--submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.reschedule-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-xs);
+}
+
+.reschedule-days .day-tab {
+  min-width: 48px;
+  padding: 6px 10px;
+}
+
+.reschedule-form__muted {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.reschedule-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  margin-top: var(--space-xs);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.reschedule-slot-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 6px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: default;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.reschedule-slot-btn.available {
+  cursor: pointer;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.reschedule-slot-btn.available:hover {
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.reschedule-slot-btn.selected {
+  border-color: var(--color-available);
+  background: var(--color-available);
+  color: var(--color-text);
+}
+
+.reschedule-slot-btn.booked {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--color-booked);
+  border-color: transparent;
+}
+
+.reschedule-slot-room {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 2px;
+}

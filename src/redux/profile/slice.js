@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchProfileSubscriptions, fetchProfileSchedules } from './operations';
+import { fetchProfileSubscriptions, fetchProfileSchedules, rescheduleVisit } from './operations';
 
 const initialState = {
   subscriptions: [],
@@ -8,6 +8,8 @@ const initialState = {
   isLoadingSchedules: false,
   errorSubscriptions: null,
   errorSchedules: null,
+  isRescheduling: false,
+  errorReschedule: null,
 };
 
 const profileSlice = createSlice({
@@ -38,6 +40,18 @@ const profileSlice = createSlice({
       .addCase(fetchProfileSchedules.rejected, (state, action) => {
         state.errorSchedules = action.payload;
         state.isLoadingSchedules = false;
+      })
+      .addCase(rescheduleVisit.pending, (state) => {
+        state.isRescheduling = true;
+        state.errorReschedule = null;
+      })
+      .addCase(rescheduleVisit.fulfilled, (state) => {
+        state.isRescheduling = false;
+        state.errorReschedule = null;
+      })
+      .addCase(rescheduleVisit.rejected, (state, action) => {
+        state.isRescheduling = false;
+        state.errorReschedule = action.payload;
       });
   },
 });

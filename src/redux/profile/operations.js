@@ -38,3 +38,19 @@ export const bookSchedule = createAsyncThunk(
     }
   }
 );
+
+export const rescheduleVisit = createAsyncThunk(
+  'profile/reschedule',
+  async ({ visitId, newSheduleId, newDate }, thunkAPI) => {
+    try {
+      await axios.put('/api/profile/reschedule', {
+        visitId,
+        newSheduleId,
+        newDate,
+      });
+    } catch (error) {
+      const message = error.response?.data?.message || error.message;
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
